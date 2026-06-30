@@ -251,6 +251,4 @@ ENDIF()
 ######################################################
 # Binary packages:
 #
-IF(WIN32 AND NOT UNIX)
-  INCLUDE("${CMAKE_CURRENT_SOURCE_DIR}/cmake/BTBinaryPackageWindows.cmake")
-ENDIF()
+INCLUDE("${CMAKE_CURRENT_SOURCE_DIR}/cmake/BTBinaryPackageWindows.cmake")
