@@ -58,9 +58,9 @@ FILE(GLOB_RECURSE bibletime_QML_FILES CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.qml"
 )
 IF(MSVC)
-    ADD_EXECUTABLE("bibletime" WIN32 ${bibletime_SOURCES} "cmake/BTWinIcon.rc")
+    qt_add_executable("bibletime" WIN32 ${bibletime_SOURCES} "cmake/BTWinIcon.rc")
 ELSE()
-    ADD_EXECUTABLE("bibletime" ${bibletime_SOURCES})
+    qt_add_executable("bibletime" ${bibletime_SOURCES})
 ENDIF()
 TARGET_COMPILE_FEATURES("bibletime" PRIVATE cxx_std_17)
 TARGET_COMPILE_DEFINITIONS("bibletime" PRIVATE
@@ -189,7 +189,9 @@ INSTALL(FILES ${BT_QM_FILES} DESTINATION "${BT_LOCALEDIR}/")
 ######################################################
 # Installation:
 #
-INSTALL(TARGETS "bibletime" DESTINATION "${BT_BINDIR}")
+INSTALL(TARGETS "bibletime" DESTINATION "${BT_BINDIR}"
+    RUNTIME_DEPENDENCY_SET bibletime_runtime_deps
+)
 FILE(GLOB INSTALL_ICONS_LIST CONFIGURE_DEPENDS
         "${CMAKE_CURRENT_SOURCE_DIR}/pics/icons/*.svg")
 INSTALL(FILES ${INSTALL_ICONS_LIST}
